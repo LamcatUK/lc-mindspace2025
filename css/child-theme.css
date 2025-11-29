@@ -22328,15 +22328,6 @@ footer .colophon .container-xl {
 }
 
 .news__card {
-  display: grid;
-  gap: 1rem;
-}
-@media (min-width: 768px) {
-  .news__card {
-    grid-template-columns: 250px auto;
-  }
-}
-.news__card {
   margin-bottom: 2rem;
 }
 .news__img {
