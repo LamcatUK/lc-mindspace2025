@@ -22,7 +22,7 @@ get_header();
         echo '<div class="mb-5">' . wp_kses_post( $content ) . '</div>';
     }
     ?>
-    <div class="container-xl py-5">
+    <div class="container-xl pb-5">
         <div class="news">
             <?php
 
