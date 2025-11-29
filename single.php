@@ -41,8 +41,6 @@ $img = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?? null;
                     <img src="<?= esc_url( $img ); ?>" alt="" class="blog__image">
                     <?php
                 }
-                $count = estimate_reading_time_in_minutes( get_the_content(), 200, true, true );
-                // echo wp_kses_post( $count );
 
                 foreach ( $blocks as $block ) {
                     if ( 'core/heading' === $block['blockName'] ) {
