@@ -106,7 +106,7 @@ defined( 'ABSPATH' ) || exit;
             <nav id="navbar" class="navbar navbar-expand-lg shadow-1" aria-labelledby="main-nav-label">
                 <div class="container-xl">
                     <a href="/" class="logo"><img
-                            src="<?= esc_url( get_stylesheet_directory_uri() . '/img/ywu-logo.svg' ); ?>"
+                            src="<?= esc_url( get_stylesheet_directory_uri() . '/img/mindspace-logo.svg' ); ?>"
                             width=146 height=81 alt="Home"></a>
                     <button class="navbar-toggler input-button" id="navToggle" data-bs-toggle="collapse"
                         data-bs-target=".navbars" type="button" aria-label="Navigation"><i

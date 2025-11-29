@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-// get gutenberg anchor ID
+// get gutenberg anchor ID.
 $block_id = ! empty( $block['anchor'] ) ? $block['anchor'] : 'contact-' . $block['id'];
 
 ?>

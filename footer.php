@@ -14,8 +14,8 @@ defined( 'ABSPATH' ) || exit;
     <div class="footer container-xl pt-5 pb-4">
         <div class="row g-4 mb-4">
             <div class="col-lg-2 text-center text-lg-start">
-                <img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/ywu-logo--wo.svg' ); ?>"
-                    width=146 height=81 class="footer__logo" alt="Yoga with Uzma">
+                <img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/mindspace-logo--wo.svg' ); ?>"
+                    width=146 height=81 class="footer__logo" alt="Mindspace Resilience">
             </div>
             <div class="col-sm-6 col-lg-3 text-center text-lg-start">
                 <?php

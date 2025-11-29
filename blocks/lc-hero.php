@@ -23,7 +23,7 @@ $background = get_field( 'background' );
     ?>
     <div class="container-xl">
         <div class="row g-4">
-            <div class="col-md-86 order-2 order-md-1 d-flex flex-column justify-content-center align-items-start">
+            <div class="col-md-8 order-2 order-md-1 d-flex flex-column justify-content-center align-items-start">
                 <h1 class="mb-3 text-purple-400">
                     <?= esc_html( get_field( 'title' ) ); ?>
                 </h1>
