@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <section class="faq py-5">
 	<div class="container">
-		<h2><?= esc_html( get_field( 'title' ) ); ?></h2>
+		<h2 class="has-purple-400-color"><?= esc_html( get_field( 'title' ) ); ?></h2>
 		<div class="faq__intro w-constrained-md mb-5"><?= esc_html( get_field( 'intro' ) ); ?></div>
 		<?php
 		$accordion = random_str( 5 );

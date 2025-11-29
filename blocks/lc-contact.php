@@ -7,8 +7,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// get gutenberg anchor ID
+$block_id = ! empty( $block['anchor'] ) ? $block['anchor'] : 'contact-' . $block['id'];
+
 ?>
-<section class="contact py-5">
+<section id="<?= esc_attr( $block_id ); ?>" class="contact py-5">
     <div class="contact__overlay"></div>
     <div class="container-xl">
         <div class="row g-5 justify-content-center">

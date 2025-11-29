@@ -210,7 +210,10 @@ function acf_blocks() {
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/lc-contact.php',
 				'mode'            => 'edit',
-				'supports'        => array( 'mode' => false ),
+				'supports'        => array(
+					'mode'   => false,
+					'anchor' => true,
+				),
 			)
 		);
 		acf_register_block_type(
