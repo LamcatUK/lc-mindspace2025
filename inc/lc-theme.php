@@ -1,147 +1,169 @@
 <?php
-// Exit if accessed directly.
-defined('ABSPATH') || exit;
+/**
+ * LC Theme Functions
+ *
+ * This file contains theme-specific functions and customizations for the LC Mindspace 2025 theme.
+ *
+ * @package lc-mindspace2025
+ */
+
+defined( 'ABSPATH' ) || exit;
 
 require_once LC_THEME_DIR . '/inc/lc-utility.php';
+require_once LC_THEME_DIR . '/inc/lc-acf-theme-palette.php';
+require_once LC_THEME_DIR . '/inc/lc-posttypes.php';
+require_once LC_THEME_DIR . '/inc/lc-taxonomies.php';
 require_once LC_THEME_DIR . '/inc/lc-blocks.php';
 require_once LC_THEME_DIR . '/inc/lc-news.php';
-// require_once LC_THEME_DIR . '/inc/lc-noblog.php';
 
+/**
+ * Editor styles: opt-in so WP loads editor.css in the block editor.
+ * With theme.json present, this just adds your custom CSS on top (variables, helpers).
+ */
+add_action(
+    'after_setup_theme',
+    function () {
+        add_theme_support( 'editor-styles' );
+        add_editor_style( 'css/custom-editor-style.min.css' );
+    },
+    5
+);
 
-// Remove unwanted SVG filter injection WP
-remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
-remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+/**
+ * Neutralise legacy palette/font-size support (if parent/Understrap adds them).
+ * theme.json is authoritative, but some themes still register supports in PHP.
+ * Remove them AFTER the parent has added them (high priority).
+ */
+add_action(
+    'after_setup_theme',
+    function () {
+        remove_theme_support( 'editor-color-palette' );
+        remove_theme_support( 'editor-gradient-presets' );
+        remove_theme_support( 'editor-font-sizes' );
+    },
+    99
+);
 
+/**
+ * (Optional) Ensure custom colours *aren't* forcibly disabled by parent.
+ * If Understrap disables custom colours, this re-enables them so theme.json works fully.
+ */
+add_filter( 'should_load_separate_core_block_assets', '__return_true' ); // performance nicety.
 
-// Remove comment-reply.min.js from footer
-function remove_comment_reply_header_hook()
-{
-    wp_deregister_script('comment-reply');
+// Remove unwanted SVG filter injection WP.
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+
+/**
+ * Remove comment-reply.min.js from footer.
+ *
+ * @return void
+ */
+function remove_comment_reply_header_hook() {
+    wp_deregister_script( 'comment-reply' );
 }
-add_action('init', 'remove_comment_reply_header_hook');
+add_action( 'init', 'remove_comment_reply_header_hook' );
 
-add_action('admin_menu', 'remove_comments_menu');
-function remove_comments_menu()
-{
-    remove_menu_page('edit-comments.php');
+/**
+ * Remove comments menu from WordPress admin.
+ *
+ * @return void
+ */
+function remove_comments_menu() {
+    remove_menu_page( 'edit-comments.php' );
 }
+add_action( 'admin_menu', 'remove_comments_menu' );
 
-add_filter('theme_page_templates', 'child_theme_remove_page_template');
-function child_theme_remove_page_template($page_templates)
-{
-    // unset($page_templates['page-templates/blank.php'],$page_templates['page-templates/empty.php'], $page_templates['page-templates/fullwidthpage.php'], $page_templates['page-templates/left-sidebarpage.php'], $page_templates['page-templates/right-sidebarpage.php'], $page_templates['page-templates/both-sidebarspage.php']);
-    unset($page_templates['page-templates/blank.php'], $page_templates['page-templates/empty.php'], $page_templates['page-templates/left-sidebarpage.php'], $page_templates['page-templates/right-sidebarpage.php'], $page_templates['page-templates/both-sidebarspage.php']);
+/**
+ * Remove unwanted page templates from the theme.
+ *
+ * @param array $page_templates Array of page templates.
+ * @return array Modified array of page templates.
+ */
+function child_theme_remove_page_template( $page_templates ) {
+    unset( $page_templates['page-templates/blank.php'], $page_templates['page-templates/empty.php'], $page_templates['page-templates/left-sidebarpage.php'], $page_templates['page-templates/right-sidebarpage.php'], $page_templates['page-templates/both-sidebarspage.php'] );
     return $page_templates;
 }
-add_action('after_setup_theme', 'remove_understrap_post_formats', 11);
-function remove_understrap_post_formats()
-{
-    remove_theme_support('post-formats', array('aside', 'image', 'video', 'quote', 'link'));
-}
+add_filter( 'theme_page_templates', 'child_theme_remove_page_template' );
 
-if (function_exists('acf_add_options_page')) {
+/**
+ * Remove Understrap post formats support.
+ *
+ * @return void
+ */
+function remove_understrap_post_formats() {
+    remove_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
+}
+add_action( 'after_setup_theme', 'remove_understrap_post_formats', 11 );
+
+if ( function_exists( 'acf_add_options_page' ) ) {
     acf_add_options_page(
         array(
-            'page_title'     => 'Site-Wide Settings',
-            'menu_title'    => 'Site-Wide Settings',
-            'menu_slug'     => 'theme-general-settings',
-            'capability'    => 'edit_posts',
+            'page_title' => 'Site-Wide Settings',
+            'menu_title' => 'Site-Wide Settings',
+            'menu_slug'  => 'theme-general-settings',
+            'capability' => 'edit_posts',
         )
     );
 }
 
-function widgets_init()
-{
-    // register_sidebar(
-    //     array(
-    //         'name'          => __('Footer Col 1', 'lc-yogawithuzma2024'),
-    //         'id'            => 'footer-1',
-    //         'description'   => __('Footer Col 1', 'lc-yogawithuzma2024'),
-    //         'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
-    //         'after_widget'  => '</div>',
-    //     )
-    // );
+/**
+ * Initialize widgets and navigation menus.
+ *
+ * Registers custom navigation menus, unregisters default Understrap sidebars and menus,
+ * and configures the editor color palette.
+ *
+ * @return void
+ */
+function widgets_init() {
 
-    register_nav_menus(array(
-        'primary_nav' => __('Primary Nav', 'lc-yogawithuzma2024'),
-        'footer_menu1' => __('Footer Menu 1', 'lc-yogawithuzma2024'),
-        'footer_menu2' => __('Footer Menu 2', 'lc-yogawithuzma2024'),
-    ));
-
-    unregister_sidebar('hero');
-    unregister_sidebar('herocanvas');
-    unregister_sidebar('statichero');
-    unregister_sidebar('left-sidebar');
-    unregister_sidebar('right-sidebar');
-    unregister_sidebar('footerfull');
-    unregister_nav_menu('primary');
-
-    add_theme_support('disable-custom-colors');
-    add_theme_support(
-        'editor-color-palette',
+    register_nav_menus(
         array(
-            array(
-                'name'  => 'Black',
-                'slug'  => 'black',
-                'color' => '#0f0f0f',
-            ),
-            array(
-                'name'  => 'White',
-                'slug'  => 'white',
-                'color' => '#ffffff',
-            ),
-            array(
-                'name'  => 'Ivory',
-                'slug'  => 'ivory',
-                'color' => '#faf5ef'
-            ),
-            array(
-                'name'  => 'Muted Purple',
-                'slug'  => 'purple-400',
-                'color' => '#95629e'
-            ),
-            array(
-                'name'  => 'Light Muted Purple',
-                'slug'  => 'purple-200',
-                'color' => '#bfa1c5'
-            ),
-            array(
-                'name'  => 'Soft Teal',
-                'slug'  => 'teal-400',
-                'color' => '#5199a8'
-            ),
-            array(
-                'name'  => 'Light Soft Teal',
-                'slug'  => 'teal-200',
-                'color' => '#97c2cb'
-            )
+            'primary_nav'  => 'Primary Nav',
+            'footer_menu1' => 'Footer Menu 1',
+            'footer_menu2' => 'Footer Menu 2',
         )
     );
+
+    unregister_sidebar( 'hero' );
+    unregister_sidebar( 'herocanvas' );
+    unregister_sidebar( 'statichero' );
+    unregister_sidebar( 'left-sidebar' );
+    unregister_sidebar( 'right-sidebar' );
+    unregister_sidebar( 'footerfull' );
+    unregister_nav_menu( 'primary' );
+
+    add_theme_support( 'disable-custom-colors' );
 }
-add_action('widgets_init', 'widgets_init', 11);
+add_action( 'widgets_init', 'widgets_init', 11 );
 
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
 
-remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
-remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
-
-
-//Custom Dashboard Widget
-add_action('wp_dashboard_setup', 'register_lc_dashboard_widget');
-function register_lc_dashboard_widget()
-{
+/**
+ * Register custom Lamcat dashboard widget.
+ *
+ * @return void
+ */
+function register_lc_dashboard_widget() {
     wp_add_dashboard_widget(
         'lc_dashboard_widget',
         'Lamcat',
-        'lc_dashboard_widget_display'
+        'lc_dashboard_widget_display',
     );
 }
+add_action( 'wp_dashboard_setup', 'register_lc_dashboard_widget' );
 
-function lc_dashboard_widget_display()
-{
-?>
+/**
+ * Display the Lamcat dashboard widget content.
+ *
+ * @return void
+ */
+function lc_dashboard_widget_display() {
+    ?>
     <div style="display: flex; align-items: center; justify-content: space-around;">
         <img style="width: 50%;"
-            src="<?= get_stylesheet_directory_uri() . '/img/lc-full.jpg'; ?>">
+            src="<?= esc_url( get_stylesheet_directory_uri() . '/img/lc-full.jpg' ); ?>">
         <a class="button button-primary" target="_blank" rel="noopener nofollow noreferrer"
             href="mailto:hello@lamcat.co.uk/">Contact</a>
     </div>
@@ -151,9 +173,10 @@ function lc_dashboard_widget_display()
         <p>Got a problem with your site, or want to make some changes & need us to take a look for you?</p>
         <p>Use the link above to get in touch and we'll get back to you ASAP.</p>
     </div>
-<?php
+    <?php
 }
 
+// phpcs:disable
 // CF 7 select parameters
 // function get_url_param($atts)
 // {
@@ -192,38 +215,55 @@ add_filter(
     }
 );
 */
+// phpcs:enable
 
-function understrap_all_excerpts_get_more_link($post_excerpt)
-{
-    if (is_admin() || ! get_the_ID()) {
+/**
+ * Filter post excerpts to modify the "read more" link.
+ *
+ * @param string $post_excerpt The post excerpt.
+ * @return string The modified post excerpt.
+ */
+function understrap_all_excerpts_get_more_link( $post_excerpt ) {
+    if ( is_admin() || ! get_the_ID() ) {
         return $post_excerpt;
     }
     return $post_excerpt;
 }
 
-//* Remove Yoast SEO breadcrumbs from Revelanssi's search results
-add_filter('the_content', 'wpdocs_remove_shortcode_from_index');
-function wpdocs_remove_shortcode_from_index($content)
-{
-    if (is_search()) {
-        $content = strip_shortcodes($content);
+/**
+ * Remove Yoast SEO breadcrumbs from Revelanssi's search results
+ *
+ * @param string $content The post content.
+ * @return string The modified post content.
+ */
+function wpdocs_remove_shortcode_from_index( $content ) {
+    if ( is_search() ) {
+        $content = strip_shortcodes( $content );
     }
     return $content;
 }
+add_filter( 'the_content', 'wpdocs_remove_shortcode_from_index' );
 
-add_action('admin_head', function () {
-    echo '<style>
-   .block-editor-page #wpwrap {
-       overflow-y: auto !important;
-   }
+add_action(
+    'admin_head',
+    function () {
+        echo '<style>
+        .block-editor-page #wpwrap {
+        overflow-y: auto !important;
+        }
    </style>';
-});
+    }
+);
 
-function lc_theme_enqueue()
-{
+/**
+ * Enqueue theme scripts and styles.
+ *
+ * @return void
+ */
+function lc_theme_enqueue() {
     $the_theme = wp_get_theme();
-    wp_deregister_script('jquery');
-    wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js', array(), null, true);
+    // phpcs:disable
+    // wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js', array(), null, true);
     // wp_enqueue_style('slick-styles', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css', array(), true);
     // wp_enqueue_style('slick-theme-styles', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css', array(), true);
     // wp_enqueue_script('slick', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js', array(), null, true);
@@ -231,52 +271,7 @@ function lc_theme_enqueue()
     // wp_enqueue_script('aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true);
     // wp_enqueue_style('glightbox-stylesheet', get_stylesheet_directory_uri() . '/css/glightbox.min.css', array(), $the_theme->get('Version'));
     // wp_enqueue_script('glightbox-scripts', get_stylesheet_directory_uri() . '/js/glightbox.min.js', array(), null, true);
+    // phpcs:enable
+    wp_deregister_script( 'jquery' );
 }
-add_action('wp_enqueue_scripts', 'lc_theme_enqueue');
-
-
-// black thumbnails - fix alpha channel
-/**
- * Patch to prevent black PDF backgrounds.
- *
- * https://core.trac.wordpress.org/ticket/45982
- */
-// require_once ABSPATH . 'wp-includes/class-wp-image-editor.php';
-// require_once ABSPATH . 'wp-includes/class-wp-image-editor-imagick.php';
-
-// // phpcs:ignore PSR1.Classes.ClassDeclaration.MissingNamespace
-// final class ExtendedWpImageEditorImagick extends WP_Image_Editor_Imagick
-// {
-//     /**
-//      * Add properties to the image produced by Ghostscript to prevent black PDF backgrounds.
-//      *
-//      * @return true|WP_error
-//      */
-//     // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
-//     protected function pdf_load_source()
-//     {
-//         $loaded = parent::pdf_load_source();
-
-//         try {
-//             $this->image->setImageAlphaChannel(Imagick::ALPHACHANNEL_REMOVE);
-//             $this->image->setBackgroundColor('#ffffff');
-//         } catch (Exception $exception) {
-//             error_log($exception->getMessage());
-//         }
-
-//         return $loaded;
-//     }
-// }
-
-// /**
-//  * Filters the list of image editing library classes to prevent black PDF backgrounds.
-//  *
-//  * @param array $editors
-//  * @return array
-//  */
-// add_filter('wp_image_editors', function (array $editors): array {
-//     array_unshift($editors, ExtendedWpImageEditorImagick::class);
-
-//     return $editors;
-// });
-?>
+add_action( 'wp_enqueue_scripts', 'lc_theme_enqueue' );

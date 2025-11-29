@@ -3,21 +3,25 @@
   --col-white: #ffffff;
   --col-black: #414440;
   --col-ivory: #faf5ef;
-  --hsl-purple-400: 284 73% 35%;
-  --col-purple-400: hsl( var(--hsl-purple-400) );
-  --hsl-purple-200: 290 24% 70%;
-  --col-purple-200: hsl( var(--hsl-purple-200));
-  --hsl-pink-400: 324 96% 46%;
-  --col-pink-400: hsl( var(--hsl-pink-400));
-  --hsl-teal-400: 190 35% 49%;
-  --col-teal-400: hsl( var(--hsl-teal-400) );
-  --hsl-teal-200: 190 33% 69%;
-  --col-teal-200: hsl( var(--hsl-teal-200) );
+  --col-purple-400-hsl: 284 73% 35%;
+  --col-purple-400: hsl(var(--col-purple-400-hsl));
+  --col-purple-200-hsl: 290 24% 70%;
+  --col-purple-200: hsl(var(--col-purple-200-hsl));
+  --col-pink-400-hsl: 324 96% 46%;
+  --col-pink-400: hsl(var(--col-pink-400-hsl));
+  --col-teal-400-hsl: 190 35% 49%;
+  --col-teal-400: hsl(var(--col-teal-400-hsl));
+  --col-teal-200-hsl: 190 33% 69%;
+  --col-teal-200: hsl(var(--col-teal-200-hsl));
   --col-gold: #f9ba32;
-  --hsl-coral: 5 100% 69%;
-  --col-coral: hsl( var(--hsl-coral) );
-  --ff-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  --ff-headings: "Marcellus", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --col-coral-hsl: 5 100% 69%;
+  --col-coral: hsl(var(--col-coral-hsl));
+  --ff-body:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --ff-headings:
+    "Marcellus", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --fw-300: 300;
   --fw-400: 400;
   --fw-500: 500;
@@ -380,12 +384,14 @@ legend {
   padding: 0;
   margin-bottom: 0.5rem;
   font-size: calc(1.275rem + 0.3vw);
-  line-height: inherit;
 }
 @media (min-width: 1200px) {
   legend {
     font-size: 1.5rem;
   }
+}
+legend {
+  line-height: inherit;
 }
 legend + * {
   clear: left;
@@ -476,8 +482,8 @@ progress {
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #00A0DE;
-  --bs-secondary: #00487C;
+  --bs-primary: #00a0de;
+  --bs-secondary: #00487c;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
   --bs-warning: #ffc107;
@@ -515,10 +521,10 @@ progress {
   --bs-border-radius-xl: 1rem;
   --bs-border-radius-2xl: 2rem;
   --bs-border-radius-pill: 50rem;
-  --bs-link-color: #00A0DE;
-  --bs-link-hover-color: #0080b2;
+  --bs-link-color: #00a0de;
+  --bs-link-hover-color: rgb(0, 128, 177.6);
   --bs-code-color: #d63384;
-  --bs-highlight-bg: #fff3cd;
+  --bs-highlight-bg: rgb(255, 242.6, 205.4);
 }
 
 .table, .wp-block-table table {
@@ -599,13 +605,13 @@ progress {
 
 .table-primary {
   --bs-table-color: #000;
-  --bs-table-bg: #ccecf8;
-  --bs-table-border-color: #b8d4df;
-  --bs-table-striped-bg: #c2e0ec;
+  --bs-table-bg: rgb(204, 236, 248.4);
+  --bs-table-border-color: rgb(183.6, 212.4, 223.56);
+  --bs-table-striped-bg: rgb(193.8, 224.2, 235.98);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #b8d4df;
+  --bs-table-active-bg: rgb(183.6, 212.4, 223.56);
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #bddae5;
+  --bs-table-hover-bg: rgb(188.7, 218.3, 229.77);
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -613,13 +619,13 @@ progress {
 
 .table-secondary {
   --bs-table-color: #000;
-  --bs-table-bg: #ccdae5;
-  --bs-table-border-color: #b8c4ce;
-  --bs-table-striped-bg: #c2cfda;
+  --bs-table-bg: rgb(204, 218.4, 228.8);
+  --bs-table-border-color: rgb(183.6, 196.56, 205.92);
+  --bs-table-striped-bg: rgb(193.8, 207.48, 217.36);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #b8c4ce;
+  --bs-table-active-bg: rgb(183.6, 196.56, 205.92);
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #bdcad4;
+  --bs-table-hover-bg: rgb(188.7, 202.02, 211.64);
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -627,13 +633,13 @@ progress {
 
 .table-success {
   --bs-table-color: #000;
-  --bs-table-bg: #d1e7dd;
-  --bs-table-border-color: #bcd0c7;
-  --bs-table-striped-bg: #c7dbd2;
+  --bs-table-bg: rgb(209, 231, 220.8);
+  --bs-table-border-color: rgb(188.1, 207.9, 198.72);
+  --bs-table-striped-bg: rgb(198.55, 219.45, 209.76);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #bcd0c7;
+  --bs-table-active-bg: rgb(188.1, 207.9, 198.72);
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #c1d6cc;
+  --bs-table-hover-bg: rgb(193.325, 213.675, 204.24);
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -641,13 +647,13 @@ progress {
 
 .table-info {
   --bs-table-color: #000;
-  --bs-table-bg: #cff4fc;
-  --bs-table-border-color: #badce3;
-  --bs-table-striped-bg: #c5e8ef;
+  --bs-table-bg: rgb(206.6, 244.4, 252);
+  --bs-table-border-color: rgb(185.94, 219.96, 226.8);
+  --bs-table-striped-bg: rgb(196.27, 232.18, 239.4);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #badce3;
+  --bs-table-active-bg: rgb(185.94, 219.96, 226.8);
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #bfe2e9;
+  --bs-table-hover-bg: rgb(191.105, 226.07, 233.1);
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -655,13 +661,13 @@ progress {
 
 .table-warning {
   --bs-table-color: #000;
-  --bs-table-bg: #fff3cd;
-  --bs-table-border-color: #e6dbb9;
-  --bs-table-striped-bg: #f2e7c3;
+  --bs-table-bg: rgb(255, 242.6, 205.4);
+  --bs-table-border-color: rgb(229.5, 218.34, 184.86);
+  --bs-table-striped-bg: rgb(242.25, 230.47, 195.13);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #e6dbb9;
+  --bs-table-active-bg: rgb(229.5, 218.34, 184.86);
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #ece1be;
+  --bs-table-hover-bg: rgb(235.875, 224.405, 189.995);
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -669,13 +675,13 @@ progress {
 
 .table-danger {
   --bs-table-color: #000;
-  --bs-table-bg: #f8d7da;
-  --bs-table-border-color: #dfc2c4;
-  --bs-table-striped-bg: #eccccf;
+  --bs-table-bg: rgb(248, 214.6, 217.8);
+  --bs-table-border-color: rgb(223.2, 193.14, 196.02);
+  --bs-table-striped-bg: rgb(235.6, 203.87, 206.91);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #dfc2c4;
+  --bs-table-active-bg: rgb(223.2, 193.14, 196.02);
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #e5c7ca;
+  --bs-table-hover-bg: rgb(229.4, 198.505, 201.465);
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -684,12 +690,12 @@ progress {
 .table-light {
   --bs-table-color: #000;
   --bs-table-bg: #f8f9fa;
-  --bs-table-border-color: #dfe0e1;
-  --bs-table-striped-bg: #ecedee;
+  --bs-table-border-color: rgb(223.2, 224.1, 225);
+  --bs-table-striped-bg: rgb(235.6, 236.55, 237.5);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #dfe0e1;
+  --bs-table-active-bg: rgb(223.2, 224.1, 225);
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #e5e6e7;
+  --bs-table-hover-bg: rgb(229.4, 230.325, 231.25);
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -698,12 +704,12 @@ progress {
 .table-dark {
   --bs-table-color: #fff;
   --bs-table-bg: #212529;
-  --bs-table-border-color: #373b3e;
-  --bs-table-striped-bg: #2c3034;
+  --bs-table-border-color: rgb(55.2, 58.8, 62.4);
+  --bs-table-striped-bg: rgb(44.1, 47.9, 51.7);
   --bs-table-striped-color: #fff;
-  --bs-table-active-bg: #373b3e;
+  --bs-table-active-bg: rgb(55.2, 58.8, 62.4);
   --bs-table-active-color: #fff;
-  --bs-table-hover-bg: #323539;
+  --bs-table-hover-bg: rgb(49.65, 53.35, 57.05);
   --bs-table-hover-color: #fff;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -782,68 +788,80 @@ progress {
 
 .display-1 {
   font-size: calc(1.625rem + 4.5vw);
-  font-weight: 300;
-  line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-1 {
     font-size: 5rem;
   }
 }
+.display-1 {
+  font-weight: 300;
+  line-height: 1.2;
+}
 
 .display-2 {
   font-size: calc(1.575rem + 3.9vw);
-  font-weight: 300;
-  line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-2 {
     font-size: 4.5rem;
   }
 }
+.display-2 {
+  font-weight: 300;
+  line-height: 1.2;
+}
 
 .display-3 {
   font-size: calc(1.525rem + 3.3vw);
-  font-weight: 300;
-  line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-3 {
     font-size: 4rem;
   }
 }
+.display-3 {
+  font-weight: 300;
+  line-height: 1.2;
+}
 
 .display-4 {
   font-size: calc(1.475rem + 2.7vw);
-  font-weight: 300;
-  line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-4 {
     font-size: 3.5rem;
   }
 }
+.display-4 {
+  font-weight: 300;
+  line-height: 1.2;
+}
 
 .display-5 {
   font-size: calc(1.425rem + 2.1vw);
-  font-weight: 300;
-  line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-5 {
     font-size: 3rem;
   }
 }
+.display-5 {
+  font-weight: 300;
+  line-height: 1.2;
+}
 
 .display-6 {
   font-size: calc(1.375rem + 1.5vw);
-  font-weight: 300;
-  line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-6 {
     font-size: 2.5rem;
   }
+}
+.display-6 {
+  font-weight: 300;
+  line-height: 1.2;
 }
 
 .list-unstyled {
@@ -916,8 +934,8 @@ progress {
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #00A0DE;
-  --bs-secondary: #00487C;
+  --bs-primary: #00a0de;
+  --bs-secondary: #00487c;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
   --bs-warning: #ffc107;
@@ -955,10 +973,10 @@ progress {
   --bs-border-radius-xl: 1rem;
   --bs-border-radius-2xl: 2rem;
   --bs-border-radius-pill: 50rem;
-  --bs-link-color: #00A0DE;
-  --bs-link-hover-color: #0080b2;
+  --bs-link-color: #00a0de;
+  --bs-link-hover-color: rgb(0, 128, 177.6);
   --bs-code-color: #d63384;
-  --bs-highlight-bg: #fff3cd;
+  --bs-highlight-bg: rgb(255, 242.6, 205.4);
 }
 
 .clearfix::after {
@@ -1008,59 +1026,59 @@ progress {
 }
 
 .link-primary {
-  color: #00A0DE !important;
+  color: #00a0de !important;
 }
 .link-primary:hover, .link-primary:focus {
-  color: #33b3e5 !important;
+  color: rgb(51, 179, 228.6) !important;
 }
 
 .link-secondary {
-  color: #00487C !important;
+  color: #00487c !important;
 }
 .link-secondary:hover, .link-secondary:focus {
-  color: #003a63 !important;
+  color: rgb(0, 57.6, 99.2) !important;
 }
 
 .link-success {
   color: #198754 !important;
 }
 .link-success:hover, .link-success:focus {
-  color: #146c43 !important;
+  color: rgb(20, 108, 67.2) !important;
 }
 
 .link-info {
   color: #0dcaf0 !important;
 }
 .link-info:hover, .link-info:focus {
-  color: #3dd5f3 !important;
+  color: rgb(61.4, 212.6, 243) !important;
 }
 
 .link-warning {
   color: #ffc107 !important;
 }
 .link-warning:hover, .link-warning:focus {
-  color: #ffcd39 !important;
+  color: rgb(255, 205.4, 56.6) !important;
 }
 
 .link-danger {
   color: #dc3545 !important;
 }
 .link-danger:hover, .link-danger:focus {
-  color: #b02a37 !important;
+  color: rgb(176, 42.4, 55.2) !important;
 }
 
 .link-light {
   color: #f8f9fa !important;
 }
 .link-light:hover, .link-light:focus {
-  color: #f9fafb !important;
+  color: rgb(249.4, 250.2, 251) !important;
 }
 
 .link-dark {
   color: #212529 !important;
 }
 .link-dark:hover, .link-dark:focus {
-  color: #1a1e21 !important;
+  color: rgb(26.4, 29.6, 32.8) !important;
 }
 
 .ratio {
@@ -5410,30 +5428,30 @@ progress {
 
 .has-primary-color,
 .has-primary-color:visited {
-  color: #00A0DE;
+  color: #00a0de;
 }
 
 .has-primary-background-color {
-  background-color: #00A0DE;
-  border-color: #00A0DE;
+  background-color: #00a0de;
+  border-color: #00a0de;
 }
 
 .wp-block-button:hover .wp-block-button__link.has-white-background-color.has-primary-color {
-  color: #00A0DE;
+  color: #00a0de;
 }
 
 .has-secondary-color,
 .has-secondary-color:visited {
-  color: #00487C;
+  color: #00487c;
 }
 
 .has-secondary-background-color {
-  background-color: #00487C;
-  border-color: #00487C;
+  background-color: #00487c;
+  border-color: #00487c;
 }
 
 .wp-block-button:hover .wp-block-button__link.has-white-background-color.has-secondary-color {
-  color: #00487C;
+  color: #00487c;
 }
 
 .has-success-color,
@@ -5616,6 +5634,39 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
 .editor-post-title .editor-post-title__input {
   font-size: 2.5rem;
   font-weight: 500;
+}
+
+.wp-block {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-block[data-align=wide] {
+  max-width: 1080px;
+}
+
+.wp-block[data-align=full] {
+  max-width: none;
+}
+
+.block-editor-page .editor-styles-wrapper {
+  scroll-behavior: auto !important;
+}
+
+.block-editor-page .editor-styles-wrapper .stretched-link::after {
+  display: none !important;
+}
+
+.block-editor-page .editor-styles-wrapper .position-sticky,
+.block-editor-page .editor-styles-wrapper .sticky-top,
+.block-editor-page .editor-styles-wrapper .fixed-top,
+.block-editor-page .editor-styles-wrapper .fixed-bottom {
+  position: static !important;
+}
+
+.block-editor-page .editor-styles-wrapper a {
+  pointer-events: auto;
 }
 
 /*# sourceMappingURL=custom-editor-style.css.map */

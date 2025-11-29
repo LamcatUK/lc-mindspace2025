@@ -41,29 +41,6 @@
             "append": ""
         },
         {
-            "key": "field_66352a6d34a26",
-            "label": "Section Background",
-            "name": "background",
-            "aria-label": "",
-            "type": "editor_palette",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "allowed_colors": "",
-            "exclude_colors": [
-                "black",
-                "teal-200",
-                "purple-200"
-            ],
-            "return_format": "slug"
-        },
-        {
             "key": "field_66352a9403cce",
             "label": "CTA Colour",
             "name": "cta_colour",
@@ -79,12 +56,22 @@
             },
             "default_value": "",
             "allowed_colors": "",
-            "exclude_colors": [
-                "black",
-                "teal-200",
-                "purple-200"
-            ],
-            "return_format": "slug"
+            "exclude_colors": "",
+            "return_format": "slug",
+            "allow_in_bindings": 0,
+            "choices": {
+                "white": "white",
+                "black": "black",
+                "ivory": "ivory",
+                "purple-400": "purple-400",
+                "purple-200": "purple-200",
+                "pink-400": "pink-400",
+                "teal-400": "teal-400",
+                "teal-200": "teal-200",
+                "gold": "gold",
+                "coral": "coral"
+            },
+            "allow_null": 1
         },
         {
             "key": "field_669b91af230b1",
@@ -146,5 +133,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751209004
+    "display_title": "",
+    "modified": 1764424462
 }

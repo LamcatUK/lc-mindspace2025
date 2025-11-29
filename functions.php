@@ -6,66 +6,73 @@
  */
 
 // Exit if accessed directly.
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 
-define('LC_THEME_DIR', WP_CONTENT_DIR . '/themes/lc-yogawithuzma2024');
+define( 'LC_THEME_DIR', get_stylesheet_directory() );
 
 require_once LC_THEME_DIR . '/inc/lc-theme.php';
 
 /**
  * Removes the parent themes stylesheet and scripts from inc/enqueue.php
  */
-function understrap_remove_scripts()
-{
-    wp_dequeue_style('understrap-styles');
-    wp_deregister_style('understrap-styles');
+function understrap_remove_scripts() {
+    wp_dequeue_style( 'understrap-styles' );
+    wp_deregister_style( 'understrap-styles' );
 
-    wp_dequeue_script('understrap-scripts');
-    wp_deregister_script('understrap-scripts');
+    wp_dequeue_script( 'understrap-scripts' );
+    wp_deregister_script( 'understrap-scripts' );
+
+    // Remove WordPress block library styles (mostly cruft).
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+    wp_dequeue_style( 'wc-blocks-style' );
 }
-add_action('wp_enqueue_scripts', 'understrap_remove_scripts', 20);
+add_action( 'wp_enqueue_scripts', 'understrap_remove_scripts', 20 );
 
 
 
 /**
- * Enqueue our stylesheet and javascript file
+ * Enqueue child-theme.min.css late for override, with filemtime versioning.
  */
-function theme_enqueue_styles()
-{
+function lc_enqueue_theme_css() {
+    $rel = '/css/child-theme.min.css';
+    $abs = get_stylesheet_directory() . $rel;
+    wp_enqueue_style(
+        'lc-theme',
+        get_stylesheet_directory_uri() . $rel,
+        array( 'global-styles' ),
+        file_exists( $abs ) ? filemtime( $abs ) : null
+    );
+}
+add_action( 'wp_enqueue_scripts', 'lc_enqueue_theme_css', 100 );
 
-    // Get the theme data.
-    $the_theme     = wp_get_theme();
-    $theme_version = $the_theme->get('Version');
-
-    $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
-    // Grab asset urls.
-    $theme_styles  = "/css/child-theme{$suffix}.css";
-    $theme_scripts = "/js/child-theme{$suffix}.js";
-    
-    $css_version = $theme_version . '.' . filemtime(get_stylesheet_directory() . $theme_styles);
-
-    wp_enqueue_style('child-understrap-styles', get_stylesheet_directory_uri() . $theme_styles, array(), $css_version);
-    wp_enqueue_script('jquery');
-    
-    $js_version = $theme_version . '.' . filemtime(get_stylesheet_directory() . $theme_scripts);
-    
-    wp_enqueue_script('child-understrap-scripts', get_stylesheet_directory_uri() . $theme_scripts, array(), $js_version, true);
-    if (is_singular() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
+/**
+ * Enqueue child-theme.min.js with filemtime versioning.
+ */
+function lc_enqueue_theme_js() {
+    $rel = '/js/child-theme.min.js';
+    $abs = get_stylesheet_directory() . $rel;
+    if ( file_exists( $abs ) ) {
+        wp_enqueue_script(
+            'lc-theme-js',
+            get_stylesheet_directory_uri() . $rel,
+            array(),
+            filemtime( $abs ),
+            true
+        );
     }
 }
-add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
+add_action( 'wp_enqueue_scripts', 'lc_enqueue_theme_js', 20 );
 
 
 
 /**
  * Load the child theme's text domain
  */
-function add_child_theme_textdomain()
-{
-    load_child_theme_textdomain('lc-yogawithuzma2024', get_stylesheet_directory() . '/languages');
+function add_child_theme_textdomain() {
+    load_child_theme_textdomain( 'lc-mindspace2025', get_stylesheet_directory() . '/languages' );
 }
-add_action('after_setup_theme', 'add_child_theme_textdomain');
+add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
 
 
 
@@ -77,19 +84,17 @@ add_action('after_setup_theme', 'add_child_theme_textdomain');
  *
  * @return string
  */
-function understrap_default_bootstrap_version()
-{
+function understrap_default_bootstrap_version() {
     return 'bootstrap5';
 }
-add_filter('theme_mod_understrap_bootstrap_version', 'understrap_default_bootstrap_version', 20);
+add_filter( 'theme_mod_understrap_bootstrap_version', 'understrap_default_bootstrap_version', 20 );
 
 
 
 /**
  * Loads javascript for showing customizer warning dialog.
  */
-function understrap_child_customize_controls_js()
-{
+function understrap_child_customize_controls_js() {
     wp_enqueue_script(
         'understrap_child_customizer',
         get_stylesheet_directory_uri() . '/js/customizer-controls.js',
@@ -98,4 +103,4 @@ function understrap_child_customize_controls_js()
         true
     );
 }
-add_action('customize_controls_enqueue_scripts', 'understrap_child_customize_controls_js');
+add_action( 'customize_controls_enqueue_scripts', 'understrap_child_customize_controls_js' );

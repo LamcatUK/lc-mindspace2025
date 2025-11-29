@@ -14,30 +14,6 @@
   font-weight: 500;
   src: url("../fonts/inter-v13-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-// /* gentium-plus-regular - latin */
-// @font-face {
-//     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-//     font-family: 'Gentium Plus';
-//     font-style: normal;
-//     font-weight: 400;
-//     src: url('../fonts/gentium-plus-v2-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-// }
-// /* gentium-plus-italic - latin */
-// @font-face {
-//     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-//     font-family: 'Gentium Plus';
-//     font-style: italic;
-//     font-weight: 400;
-//     src: url('../fonts/gentium-plus-v2-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-// }
-// /* gentium-plus-700italic - latin */
-// @font-face {
-//     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-//     font-family: 'Gentium Plus';
-//     font-style: italic;
-//     font-weight: 700;
-//     src: url('../fonts/gentium-plus-v2-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-// }
 /* marcellus-regular - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -111,6 +87,10 @@ strong {
   max-width: 65ch;
 }
 
+.w-short-45 {
+  max-width: 45ch;
+}
+
 .has-x-large-font-size,
 .fs-800 {
   font-size: var(--fs-800);
@@ -132,6 +112,10 @@ strong {
 .has-small-font-size,
 .fs-300 {
   font-size: var(--fs-300);
+}
+
+.has-text-align-center {
+  text-align: center;
 }
 
 .text-balance {
