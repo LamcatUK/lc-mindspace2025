@@ -22327,7 +22327,7 @@ footer .colophon .container-xl {
   margin-bottom: 2rem;
 }
 .news__img {
-  aspect-ratio: 16/9;
+  aspect-ratio: 9/6;
   -o-object-fit: cover;
   object-fit: cover;
   border-radius: 0.5rem;
@@ -22404,7 +22404,7 @@ footer .colophon .container-xl {
   border-bottom: 1px solid hsl(var(--hsl-purple-400)/0.5);
 }
 .related__image {
-  aspect-ratio: 16/9;
+  aspect-ratio: 9/6;
   width: 100%;
   border-radius: 0.5rem;
   -o-object-fit: cover;
