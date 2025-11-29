@@ -22323,10 +22323,6 @@ footer .colophon .container-xl {
   border-top: 1px solid white;
 }
 
-.blog .breadcrumbs {
-  display: none;
-}
-
 .news__card {
   margin-bottom: 2rem;
 }
@@ -22985,7 +22981,6 @@ a.anchor {
 }
 
 .breadcrumbs {
-  display: none;
   font-size: var(--fs-300);
   color: var(--col-grey-400);
   margin-bottom: 0.5rem;

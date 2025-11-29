@@ -8,9 +8,9 @@
 @import "blocks/blocks";
 
 body {
-    background-color: var(--col-white);
-    color: var(--col-black);
-    overflow-x: hidden;
+  background-color: var(--col-white);
+  color: var(--col-black);
+  overflow-x: hidden;
 }
 
 // main {
@@ -21,111 +21,105 @@ body {
 // }
 
 .container-xl .container-xl {
-    padding-inline: 0;
+  padding-inline: 0;
 }
 
 a {
-    transition: color var(--transition);
+  transition: color var(--transition);
 }
 
 main a:not([class]) {
-    color: var(--col-purple-400);
-    font-weight: var(--fw-600);
-    &:hover {
-        color: var(--col-purple-900);
-    }
+  color: var(--col-purple-400);
+  font-weight: var(--fw-600);
+  &:hover {
+    color: var(--col-purple-900);
+  }
 }
 
 a.noline {
-    text-decoration: none;
+  text-decoration: none;
 }
 a.anchor {
-    display: block;
-    position: relative;
-    top: -150px;
-    visibility: hidden;
+  display: block;
+  position: relative;
+  top: -150px;
+  visibility: hidden;
 }
 
-@media (min-width:992px) {
-    .cols-lg-2 {
-        columns: 2;
-    }
-    .cols-lg-3 {
-        columns: 3;
-    }
+@media (min-width: 992px) {
+  .cols-lg-2 {
+    columns: 2;
+  }
+  .cols-lg-3 {
+    columns: 3;
+  }
 }
 .share-icons {
-    padding-top: 1rem;
-    a:not(:last-of-type) {
-        margin-right: 0.5rem;
-    }
+  padding-top: 1rem;
+  a:not(:last-of-type) {
+    margin-right: 0.5rem;
+  }
 }
-
 
 .breadcrumbs {
-    display: none;
-    font-size: var(--fs-300);
-    color: var(--col-grey-400);
-    margin-bottom: 0.5rem;
-    a {
-        color: var(--col-red-600);
-    }
+  font-size: var(--fs-300);
+  color: var(--col-grey-400);
+  margin-bottom: 0.5rem;
+  a {
+    color: var(--col-red-600);
+  }
 }
-
 
 .reading {
-    font-size: 0.889rem;
-    font-style: italic;
+  font-size: 0.889rem;
+  font-style: italic;
 }
-
 
 ul.no-indent {
-    padding-inline-start: 0;
+  padding-inline-start: 0;
 }
 
-
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .social_icons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    a {
-        color: var(--col-blue-400);
-        width: 40px;
-        height: 40px;
-        display: grid;
-        place-content: center;
-        transition: color var(--transition);
-        &:hover {
-            color: var(--col-blue-900);
-        }
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  a {
+    color: var(--col-blue-400);
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-content: center;
+    transition: color var(--transition);
+    &:hover {
+      color: var(--col-blue-900);
     }
+  }
 }
 
 .rounded-lg {
-    border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg);
 }
-
 
 .buffer-top,
 .buffer-bottom {
-    width: 100%;
-    height: 2rem;
-    position: relative;
-    z-index: -1;
+  width: 100%;
+  height: 2rem;
+  position: relative;
+  z-index: -1;
 }
 .buffer-top {
-    margin-top: -2rem;
+  margin-top: -2rem;
 }
 .buffer-bottom {
-    margin-bottom: -2rem;
+  margin-bottom: -2rem;
 }
 
 .shadow-1 {
-    box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow-1);
 }
 
 // show stuff that overflows horizontally
