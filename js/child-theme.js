@@ -6867,28 +6867,27 @@
 
 	// const lightbox = GLightbox();
 
-	document.addEventListener('DOMContentLoaded', function () {
-	  const navbar = document.getElementById('navholder');
-	  let lastScrollPosition = 0;
+	document.addEventListener("DOMContentLoaded", function () {
+	  const navbar = document.getElementById("navholder");
 	  const smallerScrollThreshold = 200; // Threshold for adding the .smaller class
 
-	  window.addEventListener('scroll', function () {
+	  window.addEventListener("scroll", function () {
 	    const currentScroll = window.scrollY || document.documentElement.scrollTop;
 	    if (currentScroll > smallerScrollThreshold) {
 	      // Add .smaller class if scrolled more than the threshold
-	      navbar.classList.add('smaller');
-	      if (currentScroll > lastScrollPosition) {
-	        // Down scroll
-	        navbar.classList.add('hidden');
-	      } else {
-	        // Up scroll
-	        navbar.classList.remove('hidden');
-	      }
+	      navbar.classList.add("smaller");
+
+	      //   if (currentScroll > lastScrollPosition) {
+	      //       // Down scroll
+	      //       navbar.classList.add('hidden');
+	      //   } else {
+	      //       // Up scroll
+	      //       navbar.classList.remove('hidden');
+	      //   }
 	    } else {
 	      // Remove .smaller class if scrolled less than the threshold
-	      navbar.classList.remove('smaller');
+	      navbar.classList.remove("smaller");
 	    }
-	    lastScrollPosition = currentScroll <= 0 ? 0 : currentScroll;
 	  });
 	});
 
@@ -6937,11 +6936,11 @@
 	//       */
 
 	//       curScroll = w.scrollY || doc.scrollTop;
-	//       if (curScroll > prevScroll) { 
+	//       if (curScroll > prevScroll) {
 	//         //scrolled up
 	//         direction = 2;
 	//       }
-	//       else if (curScroll < prevScroll) { 
+	//       else if (curScroll < prevScroll) {
 	//         //scrolled down
 	//         direction = 1;
 	//       }
@@ -6954,7 +6953,7 @@
 	//     };
 
 	//     var toggleHeader = function(direction, curScroll) {
-	//       if (direction === 2 && curScroll > 52) { 
+	//       if (direction === 2 && curScroll > 52) {
 
 	//         //replace 52 with the height of your header in px
 	//         if (!document.getElementById('navbar').classList.contains("show")) {

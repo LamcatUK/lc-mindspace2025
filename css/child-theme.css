@@ -22936,6 +22936,10 @@ body {
   overflow-x: hidden;
 }
 
+.admin-bar header.fixed-top {
+  top: 32px;
+}
+
 .container-xl .container-xl {
   padding-inline: 0;
 }
