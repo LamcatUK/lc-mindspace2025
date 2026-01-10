@@ -32,9 +32,6 @@ $img = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?? null;
             <div class="col-lg-9 blog__content">
                 <h1 class="blog__title has-purple-400-color mb-3">
                     <?= esc_html( get_the_title() ); ?></h1>
-                <div class="news__meta d-flex align-items-center fs-300 mb-2">
-                    <div>Posted on <?= esc_html( $the_date ); ?></div>
-                </div>
                 <?php
                 if ( $img ) {
                     ?>
