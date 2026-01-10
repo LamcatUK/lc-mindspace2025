@@ -28,11 +28,11 @@ defined( 'ABSPATH' ) || exit;
             </div>
             <div class="col-sm-6 col-lg-3 text-center text-lg-start">
                 <?php
-                wp_nav_menu(
-                    array(
-                        'theme_location' => 'footer_menu2',
-                    )
-                );
+                // wp_nav_menu(
+                //     array(
+                //         'theme_location' => 'footer_menu2',
+                //     )
+                // );
                 ?>
             </div>
             <div class="col-lg-3 text-center text-lg-start">
