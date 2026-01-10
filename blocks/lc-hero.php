@@ -31,7 +31,7 @@ $background = get_field( 'background' );
                 if ( get_field( 'content' ) ) {
                     ?>
                 <div class="fs-500">
-                    <?= esc_html( get_field( 'content' ) ); ?>
+                    <?= wp_kses_post( get_field( 'content' ) ); ?>
                 </div>
                     <?php
                 }
