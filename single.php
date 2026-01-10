@@ -35,7 +35,7 @@ $img = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?? null;
                 <?php
                 if ( $img ) {
                     ?>
-                    <img src="<?= esc_url( $img ); ?>" alt="" class="blog__image">
+                    <img src="<?= esc_url( $img ); ?>" alt="" class="blog__image mb-4">
                     <?php
                 }
 
