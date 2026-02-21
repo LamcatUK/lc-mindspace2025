@@ -49,9 +49,6 @@ get_header();
                                 <h2 class="fs-600 has-purple-400-color mb-2">
                                     <?= esc_html( get_the_title() ); ?>
                                 </h2>
-                                <div class="news__meta d-flex align-items-center fs-300">
-                                    <div>Posted on <?= esc_html( $the_date ); ?></div>
-                                </div>
                                 <div class="news__excerpt text-grey-900 mb-2">
                                     <?= wp_kses_post( wp_trim_words( get_the_content(), 40 ) ); ?>
                                 </div>

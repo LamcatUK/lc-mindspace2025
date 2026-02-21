@@ -32,13 +32,10 @@ $img = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?? null;
             <div class="col-lg-9 blog__content">
                 <h1 class="blog__title has-purple-400-color mb-3">
                     <?= esc_html( get_the_title() ); ?></h1>
-                <div class="news__meta d-flex align-items-center fs-300 mb-2">
-                    <div>Posted on <?= esc_html( $the_date ); ?></div>
-                </div>
                 <?php
                 if ( $img ) {
                     ?>
-                    <img src="<?= esc_url( $img ); ?>" alt="" class="blog__image">
+                    <img src="<?= esc_url( $img ); ?>" alt="" class="blog__image mb-4">
                     <?php
                 }
 
@@ -74,7 +71,6 @@ $img = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?? null;
                         <a class="related__card d-block mb-3"
                             href="<?= esc_url( get_the_permalink() ); ?>">
                             <?= get_the_post_thumbnail( get_the_ID(), 'small', array( 'class' => 'related__image' ) ); ?>
-                            <div class="fs-300"><?= get_the_date( 'jS F, Y' ); ?></div>
                             <h3 class="fs-500 fw-600">
                                 <?= esc_html( get_the_title() ); ?></h3>
                         </a>
