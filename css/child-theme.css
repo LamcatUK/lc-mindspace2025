@@ -22305,8 +22305,11 @@ footer a:hover {
   color: var(--col-gold);
   opacity: 1;
 }
-footer ul.menu {
-  list-style: none;
+footer .menu ul,
+footer ul.menu,
+footer .menu li,
+footer ul li {
+  list-style: none !important;
   padding-inline-start: 0;
 }
 footer ul.fa-ul {

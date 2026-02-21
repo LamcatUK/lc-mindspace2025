@@ -12,8 +12,11 @@ footer {
     }
   }
 
-  ul.menu {
-    list-style: none;
+  .menu ul,
+  ul.menu,
+  .menu li,
+  ul li {
+    list-style: none !important;
     padding-inline-start: 0;
   }
   ul.fa-ul {
